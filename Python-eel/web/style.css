@@ -1,0 +1,13 @@
+.log-view-area {
+    width: 400px;
+    height: 500px;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 50px;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+
