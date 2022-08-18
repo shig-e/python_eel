@@ -13,7 +13,8 @@ from common.rakuten_api import RakutenAPI
 from dotenv import load_dotenv
 load_dotenv('.env')
 
-def rakuten_search(search_keyword):
+
+def rakuten_search(path):
     
     data = []
     max_page = 10
@@ -21,7 +22,7 @@ def rakuten_search(search_keyword):
         params = {
             "applicationId": os.environ.get('APP_ID'),
             "format": "json",
-            "keyword": search_keywrod,
+            "keyword": path,
             "page": i,
             "hits": 30}
         url = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706"
@@ -50,6 +51,6 @@ def rakuten_search(search_keyword):
                         "説明文": discription,
                         "Jancode": jancode})
             df = pd.DataFrame.from_dict(data, dtype=object)
-            eel.vew_log_js(df)
+            # eel.vew_log_js(name)
             output.write_csv(df) 
         
