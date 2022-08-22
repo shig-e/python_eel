@@ -3,6 +3,7 @@
 import eel
 import sys
 import socket 
+import search
 
 # 定数
 ENTRY_POINT = 'main.html'
@@ -14,6 +15,11 @@ CHROME_ARGS = [
     '--disable-dev-tools',  # デベロッパーツールを無効にする
 ]
 ALLOW_EXTENSIONS = ['.html', '.css', '.js', '.ico']
+
+@eel.expose
+def start_researching(path):
+    search.rakuten_search(path)
+    
 
 
 def start(appName, endpoint,size):  # 画面生成

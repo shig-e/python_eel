@@ -5,15 +5,13 @@ import re
 import eel
 import pandas as pd
 
-
 from common.output import Output
 from common.rakuten_api import RakutenAPI
-
 
 from dotenv import load_dotenv
 load_dotenv('.env')
 
-
+@eel.expose
 def rakuten_search(path):
     
     data = []
@@ -23,6 +21,7 @@ def rakuten_search(path):
             "applicationId": os.environ.get('APP_ID'),
             "format": "json",
             "keyword": path,
+            "genreId": 0,
             "page": i,
             "hits": 30}
         url = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706"
@@ -33,6 +32,7 @@ def rakuten_search(path):
         req = rakuten.get_requests(url, params)
         sleep(3)
         result = rakuten.check_header(req)
+        print(params)
         for _item in result["Items"]:
             item = _item["Item"]
             name = item["itemName"].replace("\n3000", ",")
@@ -51,6 +51,5 @@ def rakuten_search(path):
                         "説明文": discription,
                         "Jancode": jancode})
             df = pd.DataFrame.from_dict(data, dtype=object)
-            # eel.vew_log_js(name)
+            eel.view_log_js(name)  # type: ignore
             output.write_csv(df) 
-        
