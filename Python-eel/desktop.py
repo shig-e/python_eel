@@ -4,9 +4,9 @@ import eel
 import sys
 import socket 
 import search
+from common.constants import EelConfig
 
 # 定数
-ENTRY_POINT = 'main.html'
 CHROME_ARGS = [
     '--incognit',  # シークレットモード
     '--disable-http-cache',  # キャッシュ無効
@@ -14,16 +14,17 @@ CHROME_ARGS = [
     '--disable-extensions',  # 拡張機能無効
     '--disable-dev-tools',  # デベロッパーツールを無効にする
 ]
-ALLOW_EXTENSIONS = ['.html', '.css', '.js', '.ico']
 
+
+# GUIからpathを受け取る
 @eel.expose
 def start_researching(path):
     search.rakuten_search(path)
     
 
 
-def start(appName, endpoint,size):  # 画面生成
-    eel.init(appName, allowed_extensions=ALLOW_EXTENSIONS)
+def start():  # 画面生成
+    eel.init(EelConfig.APP_NAME, allowed_extensions=EelConfig.ALLOW_EXTENSIONS)
     # 未使用ポート取得
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.bind(('', 0))
@@ -35,8 +36,8 @@ def start(appName, endpoint,size):  # 画面生成
         'port': port,
         'cmdline_args': CHROME_ARGS
     }
-    eel.start(endpoint, options=options,
-        size=size, suppress_error=True)
+    eel.start(EelConfig.END_POINT, options=options,
+        size=EelConfig.WINDOW_SIZE, suppress_error=True)
 
 def exit(arg1, arg2):  # 終了時の処理
     sys.exit(0)

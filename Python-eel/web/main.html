@@ -12,21 +12,24 @@
 
 <body>
     <div class="contanier">
-        <h1>楽天市場出力</h1>
+        <h1>楽天市場検索ツール</h1>
         <div class="search">
             <table class="table">
                 <tbody>
                     <tr>
-                        <td><input type="text" class="form-control" id="path" size="100" maxlength="200"
+                        <td><input type="text" class="form-control" id="path" size="100" maxlength="150"
                             placeholder="検索したい商品を入力してください">
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-primary">検索</button>
+            <button type="button"  class="btn float1">検索</button>
+            <div id="result_text_area">
+                <p id="log_title" class="log_title">検索結果</p>
+            </div>
         </div>
-        <script type="text/javascript" src="/eel.js"></script>
-        <script type="text/javascript" src='rakuten.js'></script>
     </div>
+        <script type="text/javascript" src="eel.js"></script>
+        <script type="text/javascript" src="rakuten.js"></script>
 </body>
 </html>

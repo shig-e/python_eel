@@ -1,6 +1,6 @@
 import logging
 import os
-from datetime import datetime
+from datetime import datetime, date
 from pathlib import Path
 
 LOG_FORMAT = (
@@ -39,3 +39,8 @@ def set_logger():
     logger.addHandler(sh)
 
     return logger
+
+
+def get_today():
+    today = date.today()
+    return today.strftime("%m月%d日")

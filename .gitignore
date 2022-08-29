@@ -70,3 +70,7 @@ Temporary Items
 env/
 venv/
 ENV/
+
+*.csv
+*.log
+*.xlsx

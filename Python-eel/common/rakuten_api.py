@@ -16,8 +16,8 @@ class RakutenAPI(object):
     
     def check_header(self, req):
         if "json" in req.headers.get("Content-type"):
-            result = req.json()
-            return result
+            items = req.json()
+            return items
         else:
-            result = req.text
+            items = req.text
             return True
